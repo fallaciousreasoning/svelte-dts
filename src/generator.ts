@@ -50,6 +50,9 @@ class Generator {
         fileContent,
         [
           {
+            // Ignore style tags. This means we don't have to worry about
+            // plugins for SASS/LESS ect.
+            style: () => ({ code: '' }),
             script: ({ content, attributes }) => {
               if (attributes.lang === 'ts') {
                 scriptTsContent = content;
