@@ -6,6 +6,8 @@ import tmp from 'tmp';
 import { Prop, Event, SlotProp } from '../types';
 import ITransformer from './transformer';
 
+const capitalize = (text: string) => text[0].toLocaleUpperCase() + text.substring(1);
+
 class SvelteTransformer implements ITransformer {
   private fileName: string;
   private sourceFile: ts.SourceFile;
@@ -229,9 +231,9 @@ class SvelteTransformer implements ITransformer {
       string += await this.toStringDeclarations();
     }
 
-    string += `\tinterface ${pathParse.name}Props {${propsString}\n\t}\n\n`;
-    string += `\texport default class ${pathParse.name} extends SvelteComponentTyped<\n`;
-    string += `\t\t${pathParse.name}Props,\n\t\t{ ${eventsString} },\n\t\t{ ${slotPropsString} }\n\t> {}`;
+    string += `\tinterface ${capitalize(pathParse.name)}Props {${propsString}\n\t}\n\n`;
+    string += `\texport default class ${capitalize(pathParse.name)} extends SvelteComponentTyped<\n`;
+    string += `\t\t${capitalize(pathParse.name)}Props,\n\t\t{ ${eventsString} },\n\t\t{ ${slotPropsString} }\n\t> {}`;
     string += `\n}\n\n`;
 
     return string;
