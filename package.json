@@ -10,6 +10,7 @@
   "author": "André Lins <andrelucas01@hotmail.com> (https://andrelmlins.github.io/)",
   "scripts": {
     "build": "tsc -p .",
+    "postinstall": "tsc -p .",
     "types": "npm-dts generate -o ./dist/index.d.ts -L error"
   },
   "bin": {
